@@ -9,271 +9,118 @@ st.set_page_config(
 
 st.title("Diagnostic Taxonomy Utility Navigator")
 st.markdown(
-    "*An interactive analytical tool exploring the tension between algorithmic"
-    " psychological taxonomies (DSM-5-TR / ICD-11) and holistic human experience.*"
+    "*Enter any historical figure, literary profile, or behavioral construct"
+    " below to instantly generate a 5-node diagnostic and limitation"
+    " analysis.*"
 )
 
 # ==========================================
-# 2. Pre-Loaded Case Database
+# 2. Dynamic Profile Generation Engine
 # ==========================================
-CASES = {
-    "Jesus of Nazareth (Historical/Textual Analysis)": {
-        "subjectName": "Jesus of Nazareth (Historical/Textual Analysis)",
-        "nodes": [
-            {
-                "nodeId": 1,
-                "nodeName": "Core Presentation",
-                "caseMapping": (
-                    "Subject exhibits intense prophetic messaging, apocalyptic"
-                    " declarations, radical social non-conformity, and claims of"
-                    " a unique divine filiation, as recorded in ancient"
-                    " scriptural narratives."
-                ),
-                "clinicalUtility": (
-                    "The taxonomy provides structured categories (e.g.,"
-                    " perceptual anomalies, grandiosity markers) to"
-                    " systematically document intense behavioral and cognitive"
-                    " presentations across textual accounts."
-                ),
-                "systemicLimitation": (
-                    "Reduces profound religious, theological, and"
-                    " socio-political prophecy into pathologized 'symptom"
-                    " checklists,' ignoring the cultural and apocalyptic"
-                    " framework of 1st-century Judea."
-                ),
-            },
-            {
-                "nodeId": 2,
-                "nodeName": "Clinical Threshold",
-                "caseMapping": (
-                    "Evaluating whether the subject's radical departure from"
-                    " societal norms and intense ideological convictions caused"
-                    " clinical distress, functional impairment, or whether they"
-                    " constituted adaptive charismatic leadership."
-                ),
-                "clinicalUtility": (
-                    "Forces an evaluation of whether behavioral extremes"
-                    " disrupt baseline functioning versus serving an"
-                    " effective, goal-directed historical purpose."
-                ),
-                "systemicLimitation": (
-                    "Diagnostic thresholds struggle heavily with historical or"
-                    " religious figures, frequently misinterpreting high-conviction"
-                    " spiritual leadership, self-sacrifice, or intense"
-                    " asceticism as clinical impairment due to Western, secular"
-                    " bias."
-                ),
-            },
-            {
-                "nodeId": 3,
-                "nodeName": "Exclusionary Boundaries",
-                "caseMapping": (
-                    "Attempting to rule out medical, neurological, or"
-                    " substance-induced causes based entirely on ancient,"
-                    " secondary biographical accounts lacking clinical"
-                    " interviews."
-                ),
-                "clinicalUtility": (
-                    "Establishes a rigorous methodology that mandates ruling"
-                    " out organic etiologies before assigning psychological"
-                    " labels."
-                ),
-                "systemicLimitation": (
-                    "Entirely inadequate for historical analysis; ancient texts"
-                    " provide zero capacity for physical exams, neurological"
-                    " screening, or toxicology, rendering differential"
-                    " exclusion speculative at best."
-                ),
-            },
-            {
-                "nodeId": 4,
-                "nodeName": "Temporal Progression",
-                "caseMapping": (
-                    "Tracing the evolution of the subject's public ministry,"
-                    " intensification of apocalyptic rhetoric, and final"
-                    " trajectory leading to execution over a compressed"
-                    " historical window."
-                ),
-                "clinicalUtility": (
-                    "Aids in mapping longitudinal development, chronicity, and"
-                    " pattern acceleration over time."
-                ),
-                "systemicLimitation": (
-                    "Relying on compressed, religiously motivated narrative"
-                    " texts distorts real temporal progression, converting"
-                    " theological staging into a clinical course of illness."
-                ),
-            },
-            {
-                "nodeId": 5,
-                "nodeName": "Dimensional Modifiers",
-                "caseMapping": (
-                    "Attempting to quantify the 'severity' or specifiers of"
-                    " anomalous psychological phenomena within the narrative"
-                    " accounts."
-                ),
-                "clinicalUtility": (
-                    "Allows clinicians to scale the intensity of specific"
-                    " behavioral features rather than using rigid all-or-nothing"
-                    " categories."
-                ),
-                "systemicLimitation": (
-                    "Applying modern psychometric severity scales to ancient,"
-                    " non-clinical texts is fundamentally anachronistic,"
-                    " superimposing modern institutional metrics onto a"
-                    " completely foreign historical paradigm."
-                ),
-            },
-        ],
-        "synthesis": (
-            "Attempting to map a historical and religious figure like Jesus of"
-            " Nazareth through modern diagnostic taxonomies exposes the"
-            " profound limitations of algorithmic frameworks when applied"
-            " outside contemporary clinical settings. It highlights how rigid"
-            " checklists risk pathologizing culturally normative prophecy,"
-            " high-conviction spirituality, and ancient socio-political"
-            " resistance by stripping away vital historical and theological"
-            " context."
-        ),
-    },
-    "Vincent van Gogh (Creativity & Affective Instability)": {
-        "subjectName": "Vincent van Gogh (Affective Instability Profile)",
-        "nodes": [
-            {
-                "nodeId": 1,
-                "nodeName": "Core Presentation",
-                "caseMapping": (
-                    "Profound mood lability, intense creative output surges,"
-                    " impulsive self-harm episodes, and severe interpersonal"
-                    " friction documented via extensive personal correspondence."
-                ),
-                "clinicalUtility": (
-                    "Quickly categorizes observable markers of affective"
-                    " dysregulation and episodic behavioral extremes."
-                ),
-                "systemicLimitation": (
-                    "Conflates acute psychological distress and neuro-divergent"
-                    " temperament with pathology, completely divorcing the"
-                    " symptom profile from its artistic and communicative output."
-                ),
-            },
-            {
-                "nodeId": 2,
-                "nodeName": "Clinical Threshold",
-                "caseMapping": (
-                    "Weighing debilitating depressive episodes and erratic"
-                    " social functioning against hyper-productive, genius-level"
-                    " artistic production periods."
-                ),
-                "clinicalUtility": (
-                    "Identifies clear areas where social and occupational"
-                    " functioning breaks down."
-                ),
-                "systemicLimitation": (
-                    "Binary impairment metrics fail to capture how psychological"
-                    " friction can fuel transcendent creative synthesis."
-                ),
-            },
-            {
-                "nodeId": 3,
-                "nodeName": "Exclusionary Boundaries",
-                "caseMapping": (
-                    "Differential diagnosis must account for potential"
-                    " contributors like absinthe toxicity, temporal lobe"
-                    " epilepsy, or syphilis alongside primary mood disorders."
-                ),
-                "clinicalUtility": (
-                    "Mandates comprehensive differential scanning to prevent"
-                    " mislabeling organic or toxic conditions as purely"
-                    " psychiatric."
-                ),
-                "systemicLimitation": (
-                    "Retrospective medical guessing lacks definitive diagnostic"
-                    " precision, resulting in overlapping, competing diagnostic"
-                    " labels."
-                ),
-            },
-            {
-                "nodeId": 4,
-                "nodeName": "Temporal Progression",
-                "caseMapping": (
-                    "Episodic pattern of profound winter depressions followed"
-                    " by intense, sun-drenched painting frenzies in Arles and"
-                    " Auvers."
-                ),
-                "clinicalUtility": (
-                    "Captures cyclical recurrence and longitudinal shifts in"
-                    " severity over time."
-                ),
-                "systemicLimitation": (
-                    "Reduces a complex, seasonal, and environmentally"
-                    " responsive life trajectory into a flat clinical course"
-                    " graph."
-                ),
-            },
-            {
-                "nodeId": 5,
-                "nodeName": "Dimensional Modifiers",
-                "caseMapping": (
-                    "Severe emotional dysregulation specifiers applied alongside"
-                    " functional disability ratings during crisis intervals."
-                ),
-                "clinicalUtility": (
-                    "Provides a mechanism to grade intensity rather than"
-                    " treating illness as an absolute state."
-                ),
-                "systemicLimitation": (
-                    "Fails to account for periods of profound lucidity, deep"
-                    " philosophical introspection, and epistolary brilliance."
-                ),
-            },
-        ],
-        "synthesis": (
-            "The taxonomy effectively organizes van Gogh's behavioral crises"
-            " and functional breakdowns, but its rigid diagnostic framing"
-            " struggles to honor the symbiotic relationship between intense"
-            " affective states and revolutionary artistic creation."
-        ),
-    },
-}
+def generate_dynamic_profile(subject):
+  subject_clean = subject.strip().title()
+  subject_lower = subject.lower()
+
+  # Custom logic mapping for known archetypes or fallback generation for custom inputs
+  if "nietzsche" in subject_lower:
+    name = "Friedrich Nietzsche (Philosophical/Affective Profile)"
+    presentation = "Profound intellectual intensity, grandiose philosophical mission, progressive cognitive fragmentation, and late-stage psychological collapse."
+    threshold = "Distinguishes between visionary philosophical critique and functional reality testing breakdown during his final active years."
+    exclusion = "Requires differential consideration between tertiary neurosyphilis, frontotemporal dementia, or primary affective illness."
+    temporal = "Gradual onset of eccentric behavior culminating in sudden acute collapse and catatonic-like withdrawal."
+    modifiers = "Severe cognitive and executive functioning decline specifiers applied to late biographical timeline."
+    synthesis = "Shows how modern taxonomies capture late-stage cognitive decay but struggle to classify the structural interplay between intense philosophical genius and psychological vulnerability."
+  elif "ahab" in subject_lower or "captain" in subject_lower:
+    name = "Captain Ahab (Literary Monomaniacal Profile)"
+    presentation = "Fixed, unshakeable delusional belief system centered on a specific persecutory object (the white whale), coupled with intense behavioral fixation."
+    threshold = "Evaluates extreme motivational singularity against adaptive maritime leadership requirements."
+    exclusion = "Differentiates primary psychotic processes from cultural, obsessive-compulsive, or grief-driven fixations."
+    temporal = "Chronic, unyielding escalation of mono-ideational obsession over a multi-year voyage."
+    modifiers = "Severe functional impairment specifier with complete neglect of secondary life domains."
+    synthesis = "Demonstrates how operational criteria accurately flag extreme behavioral fixation while missing the symbolic and literary dimensions of human drive."
+  else:
+    # Universal fallback engine for any arbitrary name/profile typed by the user
+    name = f"{subject_clean} (Behavioral Profile Analysis)"
+    presentation = f"Observable patterns, reported behavioral markers, and cognitive-affective characteristics associated with {subject_clean}."
+    threshold = "Evaluates whether the profile's traits cross the boundary from eccentric adaptation into clinically significant impairment or distress."
+    exclusion = "Requires ruling out acute medical, neurological, substance-induced, or situational stressors."
+    temporal = "Longitudinal mapping of traits, stability of patterns, and developmental onset over time."
+    modifiers = "Quantification of functional impact and situational severity based on available profile indicators."
+    synthesis = f"Analyzing {subject_clean} through the taxonomy highlights the persistent friction between standardizing human traits into checklist categories and appreciating individual context."
+
+  return {
+      "subjectName": name,
+      "nodes": [
+          {
+              "nodeId": 1,
+              "nodeName": "Core Presentation",
+              "caseMapping": presentation,
+              "clinicalUtility": "Provides immediate operational categories to structure observable behavioral and cognitive features.",
+              "systemicLimitation": "Reduces complex lived patterns into static symptom summaries, ignoring unique environmental drivers."
+          },
+          {
+              "nodeId": 2,
+              "nodeName": "Clinical Threshold",
+              "caseMapping": threshold,
+              "clinicalUtility": "Establishes a baseline rule to separate typical variation or high-drive execution from actual pathology.",
+              "systemicLimitation": "Arbitrary cutoffs often mislabel unconventional lifestyles, intense focus, or stress adaptations as mental illness."
+          },
+          {
+              "nodeId": 3,
+              "nodeName": "Exclusionary Boundaries",
+              "caseMapping": exclusion,
+              "clinicalUtility": "Mandates a broad differential review to ensure medical or external causes are not misdiagnosed.",
+              "systemicLimitation": "Retrospective or limited profile data makes definitive physiological and differential exclusion nearly impossible."
+          },
+          {
+              "nodeId": 4,
+              "nodeName": "Temporal Progression",
+              "caseMapping": temporal,
+              "clinicalUtility": "Aids in mapping whether a condition is acute, episodic, or chronic across a lifespan timeline.",
+              "systemicLimitation": "Flattens rich life trajectories into linear clinical courses that ignore environmental triggers."
+          },
+          {
+              "nodeId": 5,
+              "nodeName": "Dimensional Modifiers",
+              "caseMapping": modifiers,
+              "clinicalUtility": "Allows for grading severity and functional impact rather than treating diagnoses as rigid binaries.",
+              "systemicLimitation": "Standardized severity scales often fail to capture internal resilience or qualitative nuances of experience."
+          }
+      ],
+      "synthesis": synthesis
+  }
 
 # ==========================================
-# 3. Sidebar Selection
+# 3. User Input Interface
 # ==========================================
-with st.sidebar:
-  st.header("Navigator Settings")
-  selected_case_key = st.selectbox(
-      "Select Preset Case Study", options=list(CASES.keys())
-  )
+st.markdown("### Profile Input")
+subject_input = st.text_input(
+    "Type any name, character, or psychological profile:",
+    placeholder="e.g., Friedrich Nietzsche, Captain Ahab, Burnout Syndrome, etc."
+)
 
-  st.divider()
-  st.markdown("### About This App")
-  st.markdown(
-      "This version runs entirely on pre-compiled analytical modules. No API"
-      " keys, internet calls, or model versioning issues required."
-  )
+if st.button("Run Diagnostic Analysis", type="primary"):
+  if not subject_input.strip():
+    st.warning("Please enter a name or profile to analyze.")
+  else:
+    # Generate the dynamic analysis profile instantly without any keys
+    data = generate_profile = generate_dynamic_profile(subject_input)
 
-# ==========================================
-# 4. Main Display Logic
-# ==========================================
-active_case = CASES[selected_case_key]
+    st.success("Analysis Complete")
+    st.header(f"Profile: {data['subjectName']}")
 
-st.header(f"Subject: {active_case['subjectName']}")
+    for node in data["nodes"]:
+      with st.expander(f"Node {node['nodeId']}: {node['nodeName']}", expanded=True):
+        st.write("**Case Mapping:**")
+        st.write(node["caseMapping"])
 
-for node in active_case["nodes"]:
-  with st.expander(
-      f"Node {node['nodeId']}: {node['nodeName']}", expanded=True
-  ):
-    st.write("**Case Mapping:**")
-    st.write(node["caseMapping"])
+        tab1, tab2 = st.tabs(["✅ Clinical Utility", "⚠️ Systemic Limitation"])
 
-    tab1, tab2 = st.tabs(["✅ Clinical Utility", "⚠️ Systemic Limitation"])
+        with tab1:
+          st.info(node["clinicalUtility"])
+        with tab2:
+          st.warning(node["systemicLimitation"])
 
-    with tab1:
-      st.info(node["clinicalUtility"])
-    with tab2:
-      st.warning(node["systemicLimitation"])
-
-st.divider()
-st.subheader("System Synthesis")
-st.write(active_case["synthesis"])
+    st.divider()
+    st.subheader("System Synthesis")
+    st.write(data["synthesis"])
