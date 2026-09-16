@@ -10,14 +10,38 @@ st.set_page_config(
 )
 
 st.title("Diagnostic Taxonomy Utility Navigator")
+
+# ==========================================
+# 2. Theoretical Primer & Explanation
+# ==========================================
+with st.expander("📚 Educational Primer: Consolidating DSM-5-TR & ICD-11", expanded=False):
+    st.markdown("""
+    ### Why Consolidate Diagnostic Taxonomies?
+    
+    Psychiatric classification traditionally relies on two dominant international standards:
+    * **DSM-5-TR (Diagnostic and Statistical Manual of Mental Disorders):** Developed primarily for North American clinical practice, it utilizes rigid, operationalized **symptom checklists** and polythetic criteria (e.g., meeting 5 out of 9 symptoms).
+    * **ICD-11 (International Classification of Diseases, Chapter 06):** Maintained by the WHO for global medical use, it emphasizes **narrative clinical prototypes** and explicit boundaries with normative human experience.
+
+    ### The Unified Diagnostic Architecture
+    While these systems differ in format, they share an underlying empirical logic. By synthesizing the DSM's structural thresholds with the ICD's contextual guidelines, we consolidate their logic into a **5-Step Sequential Assessment Hierarchy**:
+
+    1. **Core Presentation:** Merges DSM's core symptom sets with ICD's clinical prototype patterns.
+    2. **Clinical Threshold:** Evaluates functional impairment/distress while establishing boundaries against normal human reactions (e.g., differentiating clinical depression from typical grief).
+    3. **Exclusionary Boundaries:** Rules out physiological, substance-induced, or overlapping psychiatric differential diagnoses.
+    4. **Temporal Progression:** Maps longitudinal trajectories, symptom onset, and duration requirements.
+    5. **Dimensional Modifiers:** Integrates severity specifiers and multi-axial extension codes.
+
+    ### Tension: Utility vs. Systemic Limitations
+    This application acts as a critical visualizer. While algorithmic taxonomies provide standardized communication and insurance billing frameworks, they often create **friction points**: oversimplifying complex trauma, enforcing rigid symptom counting over lived experience, or pathologizing culturally normative behaviors. Use this navigator to explore where classification succeeds—and where it falls short.
+    """)
+
 st.markdown("""
-Enter a historical figure, theoretical case, or specific psychological construct. 
-The AI logic engine will map the subject across a 5-step Unified Diagnostic Architecture, 
-exposing the tension between algorithmic clinical utility and systemic limitations.
+Enter a historical figure, theoretical case, or specific psychological construct below. 
+The AI logic engine will map the subject across the 5-step Unified Architecture.
 """)
 
 # ==========================================
-# 2. Sidebar Configuration & Key Handling
+# 3. Sidebar Configuration & Key Handling
 # ==========================================
 with st.sidebar:
   st.header("Configuration")
@@ -48,7 +72,7 @@ with st.sidebar:
   )
 
 # ==========================================
-# 3. System Prompt Architecture
+# 4. System Prompt Architecture
 # ==========================================
 SYSTEM_INSTRUCTION = """
 You are the logic engine for the "Taxonomy Utility Navigator." Your role is to analyze user-submitted cases using a 5-step Unified Diagnostic Architecture derived from the DSM-5-TR and ICD-11. 
@@ -82,7 +106,7 @@ Output ONLY valid JSON using this exact schema:
 """
 
 # ==========================================
-# 4. Main Application Logic
+# 5. Main Application Logic
 # ==========================================
 subject_input = st.text_input(
     "Subject to Analyze:",
@@ -125,7 +149,7 @@ if st.button("Run Analysis", type="primary"):
         data = json.loads(raw_content)
 
       # ==========================================
-      # 5. UI Rendering
+      # 6. UI Rendering
       # ==========================================
       st.success("Analysis Complete")
       st.header(f"Subject: {data.get('subjectName', subject_input)}")
