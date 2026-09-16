@@ -14,8 +14,10 @@ st.title("Diagnostic Taxonomy Utility Navigator")
 # ==========================================
 # 2. Theoretical Primer & Explanation
 # ==========================================
-with st.expander("📚 Educational Primer: Consolidating DSM-5-TR & ICD-11", expanded=False):
-    st.markdown("""
+with st.expander(
+    "📚 Educational Primer: Consolidating DSM-5-TR & ICD-11", expanded=False
+):
+  st.markdown("""
     ### Why Consolidate Diagnostic Taxonomies?
     
     Psychiatric classification traditionally relies on two dominant international standards:
@@ -61,8 +63,8 @@ with st.sidebar:
 
   model_name = st.text_input(
       "Model Name",
-      value="gemini-1.5-flash",
-      help="e.g., gemini-1.5-flash or gemini-1.5-pro",
+      value="gemini-2.5-flash",
+      help="e.g., gemini-2.5-flash, gemini-2.5-pro, or models/gemini-1.5-flash",
   )
 
   base_url = st.text_input(
