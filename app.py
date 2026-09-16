@@ -64,7 +64,7 @@ with st.sidebar:
   model_name = st.text_input(
       "Model Name",
       value="gemini-2.5-flash",
-      help="e.g., gemini-2.5-flash, gemini-2.5-pro, or models/gemini-1.5-flash",
+      help="e.g., gemini-2.5-flash, models/gemini-1.5-flash, or gemini-2.5-pro",
   )
 
   base_url = st.text_input(
