@@ -429,4 +429,213 @@ DATABASE = {
                     " vengeance norms."
                 ),
                 "clinicalUtility": (
-           
+                    "Mandates ruling out organic head injury and substance"
+                    " factors before confirming delusional pathology."
+                ),
+                "systemicLimitation": (
+                    "Fictional characters cannot undergo real neurological"
+                    " screening, rendering differential diagnosis a speculative"
+                    " exercise."
+                ),
+            },
+            {
+                "nodeId": 4,
+                "nodeName": (
+                    "Temporal Progression (Duration & Longitudinal Course)"
+                ),
+                "caseMapping": (
+                    "Chronic, unyielding escalation of mono-ideational"
+                    " obsession culminating in catastrophic terminal execution."
+                ),
+                "clinicalUtility": (
+                    "Tracks the chronic, unremitting trajectory of unyielding"
+                    " fixations."
+                ),
+                "systemicLimitation": (
+                    "Treats narrative plot pacing as an organic medical disease"
+                    " progression."
+                ),
+            },
+            {
+                "nodeId": 5,
+                "nodeName": (
+                    "Dimensional Modifiers (Severity & Extension Codes)"
+                ),
+                "caseMapping": (
+                    "Severe functional impairment with total loss of reality"
+                    " testing regarding risk."
+                ),
+                "clinicalUtility": (
+                    "Quantifies extreme risk-taking and functional deficit."
+                ),
+                "systemicLimitation": (
+                    "Ignores the rhetorical and narrative brilliance embedded"
+                    " within the subject's monologues."
+                ),
+            },
+        ],
+        "synthesis": (
+            "Combining DSM structural thresholds with ICD narrative prototypes"
+            " effectively flags extreme behavioral fixation, but misses the"
+            " symbolic, thematic, and literary dimensions of human drive."
+        ),
+    },
+}
+
+
+def generate_dynamic_profile(subject):
+  subject_clean = subject.strip().title()
+  subject_lower = subject.lower()
+
+  for key, profile in DATABASE.items():
+    if key in subject_lower or subject_lower in key:
+      return profile
+
+  return {
+      "subjectName": f"{subject_clean} (Clinical & Behavioral Profile Analysis)",
+      "nodes": [
+          {
+              "nodeId": 1,
+              "nodeName": (
+                  "Core Presentation (DSM Checklists & ICD Prototypes)"
+              ),
+              "caseMapping": (
+                  f"Observable behavioral markers, cognitive patterns, and"
+                  f" reported traits associated with {subject_clean}, mapped"
+                  " through synthesized DSM-5-TR operational symptom"
+                  " checklists and ICD-11 clinical narrative prototypes."
+              ),
+              "clinicalUtility": (
+                  "Provides immediate operational categories to structure"
+                  " observable features across standardized criteria."
+              ),
+              "systemicLimitation": (
+                  "Reduces complex lived patterns into static symptom"
+                  " summaries, ignoring unique environmental and cultural"
+                  " drivers."
+              ),
+          },
+          {
+              "nodeId": 2,
+              "nodeName": (
+                  "Clinical Threshold (Distress vs. Normative Experience)"
+              ),
+              "caseMapping": (
+                  "Evaluating whether the profile's traits cross the boundary"
+                  " from eccentric adaptation, high-drive focus, or lifestyle"
+                  " variation into clinically significant impairment or"
+                  " distress."
+              ),
+              "clinicalUtility": (
+                  "Establishes a dual-system baseline rule to separate typical"
+                  " human variation from actual pathological impairment."
+              ),
+              "systemicLimitation": (
+                  "Arbitrary cutoffs across both manuals often mislabel"
+                  " unconventional lifestyles or stress adaptations as mental"
+                  " illness."
+              ),
+          },
+          {
+              "nodeId": 3,
+              "nodeName": (
+                  "Exclusionary Boundaries (Differential & Medical Rules)"
+              ),
+              "caseMapping": (
+                  "Mandatory differential review requiring the exclusion of"
+                  " acute medical conditions, neurological insults, substance"
+                  " effects, or external situational stressors."
+              ),
+              "clinicalUtility": (
+                  "Ensures compliance with international medical standards by"
+                  " preventing misdiagnosis of organic issues."
+              ),
+              "systemicLimitation": (
+                  "Limited or retrospective profile data makes definitive"
+                  " physiological and differential exclusion nearly impossible."
+              ),
+          },
+          {
+              "nodeId": 4,
+              "nodeName": (
+                  "Temporal Progression (Duration & Longitudinal Course)"
+              ),
+              "caseMapping": (
+                  "Longitudinal mapping of trait stability, developmental"
+                  " onset, and duration requirements across a standardized"
+                  " lifespan timeline."
+              ),
+              "clinicalUtility": (
+                  "Aids in mapping whether a condition or pattern is acute,"
+                  " episodic, or chronic."
+              ),
+              "systemicLimitation": (
+                  "Flattens rich life trajectories into linear clinical courses"
+                  " that ignore environmental triggers."
+              ),
+          },
+          {
+              "nodeId": 5,
+              "nodeName": (
+                  "Dimensional Modifiers (Severity & Extension Codes)"
+              ),
+              "caseMapping": (
+                  "Quantification of functional impact, severity specifiers,"
+                  " and contextual disability coding drawing from both"
+                  " standards."
+              ),
+              "clinicalUtility": (
+                  "Utilizes dimensional grading to score severity rather than"
+                  " treating diagnoses as rigid binaries."
+              ),
+              "systemicLimitation": (
+                  "Standardized severity scales often fail to capture internal"
+                  " resilience or qualitative nuances of human experience."
+              ),
+          },
+      ],
+      "synthesis": (
+          f"Analyzing {subject_clean} through the dual DSM-5-TR and ICD-11"
+          " framework highlights the persistent friction between standardizing"
+          " human traits into rigid algorithmic categories and appreciating"
+          " individual holistic context."
+      ),
+  }
+
+
+# ==========================================
+# 4. User Input Interface
+# ==========================================
+st.markdown("### Profile Input")
+subject_input = st.text_input(
+    "Type any name or historical profile (try 'Vincent van Gogh', 'Abraham"
+    " Lincoln', 'Friedrich Nietzsche', or 'Captain Ahab'):",
+    placeholder="e.g., Vincent van Gogh, Abraham Lincoln...",
+)
+
+if st.button("Run Diagnostic Analysis", type="primary"):
+  if not subject_input.strip():
+    st.warning("Please enter a name or profile to analyze.")
+  else:
+    data = generate_dynamic_profile(subject_input)
+
+    st.success("Analysis Complete")
+    st.header(f"Profile: {data['subjectName']}")
+
+    for node in data["nodes"]:
+      with st.expander(
+          f"Node {node['nodeId']}: {node['nodeName']}", expanded=True
+      ):
+        st.write("**Case Mapping:**")
+        st.write(node["caseMapping"])
+
+        tab1, tab2 = st.tabs(["✅ Clinical Utility", "⚠️ Systemic Limitation"])
+
+        with tab1:
+          st.info(node["clinicalUtility"])
+        with tab2:
+          st.warning(node["systemicLimitation"])
+
+    st.divider()
+    st.subheader("System Synthesis")
+    st.write(data["synthesis"])
